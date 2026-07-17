@@ -1,1 +1,384 @@
-.
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>ROM Expiration Notice</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      padding: 24px;
+      font-family: Tahoma, "Noto Sans Thai", sans-serif;
+      color: #ffffff;
+      background:
+        radial-gradient(
+          circle at top,
+          rgba(255, 30, 60, 0.17),
+          transparent 38%
+        ),
+        linear-gradient(135deg, #030304, #0b0b10, #15151c);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .warning-container {
+      width: 100%;
+      max-width: 850px;
+      overflow: hidden;
+      background: rgba(13, 13, 18, 0.97);
+      border: 1px solid rgba(255, 60, 60, 0.5);
+      border-radius: 24px;
+      box-shadow:
+        0 0 35px rgba(255, 0, 40, 0.18),
+        0 30px 80px rgba(0, 0, 0, 0.8);
+    }
+
+    .top-line {
+      height: 6px;
+      background: linear-gradient(
+        90deg,
+        #ff003c,
+        #ff7a00,
+        #ff003c
+      );
+      animation: glow 1.8s infinite alternate;
+    }
+
+    @keyframes glow {
+      from {
+        filter: brightness(0.8);
+      }
+
+      to {
+        filter: brightness(1.6);
+      }
+    }
+
+    .content {
+      padding: 45px;
+    }
+
+    .icon {
+      width: 88px;
+      height: 88px;
+      margin: 0 auto 20px;
+      font-size: 48px;
+      background: rgba(255, 35, 35, 0.12);
+      border: 2px solid #ff3b3b;
+      border-radius: 50%;
+      box-shadow: 0 0 28px rgba(255, 40, 40, 0.28);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+      color: #ff4545;
+      font-size: clamp(28px, 5vw, 44px);
+      text-align: center;
+      letter-spacing: 1px;
+    }
+
+    .subtitle {
+      margin-bottom: 30px;
+      color: #b9b9c3;
+      font-size: 17px;
+      line-height: 1.7;
+      text-align: center;
+    }
+
+    .notice {
+      margin-bottom: 25px;
+      padding: 22px;
+      color: #ddddE5;
+      font-size: 17px;
+      line-height: 1.9;
+      background: #08080b;
+      border-left: 5px solid #ff3b3b;
+      border-radius: 12px;
+    }
+
+    .notice strong {
+      color: #ffffff;
+    }
+
+    .feature-list {
+      margin: 18px 0;
+      display: grid;
+      gap: 12px;
+    }
+
+    .feature-item {
+      padding: 14px 16px;
+      color: #d5d5dd;
+      line-height: 1.65;
+      background: rgba(255, 255, 255, 0.035);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .feature-icon {
+      flex-shrink: 0;
+      color: #ff4e4e;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .expire-box {
+      margin-top: 25px;
+      padding: 20px;
+      text-align: center;
+      background: linear-gradient(
+        135deg,
+        rgba(255, 0, 45, 0.18),
+        rgba(255, 105, 0, 0.12)
+      );
+      border: 1px solid rgba(255, 70, 70, 0.5);
+      border-radius: 14px;
+    }
+
+    .expire-box small {
+      display: block;
+      margin-bottom: 5px;
+      color: #ffbbbb;
+      font-size: 15px;
+    }
+
+    .expire-date {
+      color: #ffffff;
+      font-size: clamp(30px, 6vw, 50px);
+      font-weight: 800;
+      text-shadow: 0 0 18px rgba(255, 40, 40, 0.7);
+    }
+
+    .contact-box {
+      margin-top: 25px;
+      padding: 24px;
+      text-align: center;
+      background: rgba(25, 25, 32, 0.95);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 14px;
+    }
+
+    .contact-box h2 {
+      margin-bottom: 12px;
+      color: #ffb347;
+      font-size: 22px;
+    }
+
+    .contact-name {
+      margin-bottom: 8px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .contact-text {
+      color: #aeb0bd;
+      line-height: 1.7;
+    }
+
+    .button-group {
+      margin-top: 22px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .button {
+      min-width: 210px;
+      padding: 14px 24px;
+      color: #ffffff;
+      font-size: 16px;
+      font-weight: bold;
+      text-align: center;
+      text-decoration: none;
+      border: 0;
+      border-radius: 11px;
+      cursor: pointer;
+      transition:
+        transform 0.25s,
+        filter 0.25s,
+        box-shadow 0.25s;
+    }
+
+    .button:hover {
+      transform: translateY(-3px);
+      filter: brightness(1.12);
+    }
+
+    .activate-button {
+      background: linear-gradient(135deg, #ff1744, #ff6d00);
+      box-shadow: 0 8px 25px rgba(255, 50, 50, 0.25);
+    }
+
+    .facebook-button {
+      background: linear-gradient(135deg, #0866ff, #0047b8);
+      box-shadow: 0 8px 25px rgba(8, 102, 255, 0.22);
+    }
+
+    .footer {
+      margin-top: 28px;
+      color: #74747e;
+      font-size: 13px;
+      line-height: 1.7;
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 14px;
+      }
+
+      .content {
+        padding: 30px 20px;
+      }
+
+      .notice {
+        font-size: 15px;
+      }
+
+      .feature-item {
+        font-size: 14px;
+      }
+
+      .button {
+        width: 100%;
+        min-width: unset;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="warning-container">
+
+    <div class="top-line"></div>
+
+    <div class="content">
+
+      <div class="icon">⚠️</div>
+
+      <h1>โปรดอ่านก่อนใช้งาน</h1>
+
+      <p class="subtitle">
+        ROM ชุดนี้กำลังจะหมดอายุ<br>
+        กรุณาตรวจสอบไฟล์และสถานะการใช้งานของคุณ
+      </p>
+
+      <section class="notice">
+        <strong>ประกาศสำคัญ</strong><br><br>
+
+        ROM ชุดนี้จัดทำขึ้นสำหรับการทดสอบเท่านั้น
+        ไม่อนุญาตให้นำไปจำหน่ายหรือใช้เพื่อแสวงหาผลประโยชน์
+        โดยไม่ได้รับอนุญาตจากทีมผู้พัฒนา
+
+        <br><br>
+
+        ภายใน ROM มีระบบกำหนดวันหมดอายุและระบบล็อกการใช้งาน
+        หลังจาก ROM หมดอายุ ผู้ใช้งานจะสามารถใช้งานได้เพียง
+        บางฟีเจอร์เท่านั้น
+      </section>
+
+      <div class="feature-list">
+
+        <div class="feature-item">
+          <span class="feature-icon">✕</span>
+          <div>
+            ไม่สามารถใช้งานบริการบางส่วนของ Google ได้
+          </div>
+        </div>
+
+        <div class="feature-item">
+          <span class="feature-icon">✕</span>
+          <div>
+            อาจไม่สามารถดาวน์โหลดหรือติดตั้งแอปพลิเคชันได้
+          </div>
+        </div>
+
+        <div class="feature-item">
+          <span class="feature-icon">✕</span>
+          <div>
+            แอปพลิเคชันบางรายการอาจไม่สามารถเปิด
+            หรือทำงานได้ตามปกติ
+          </div>
+        </div>
+
+        <div class="feature-item">
+          <span class="feature-icon">!</span>
+          <div>
+            หากต้องการใช้งานต่อ กรุณาซื้อ Activation Key
+            และเปิดใช้งานออนไลน์ผ่านเว็บไซต์ของทีม AFP289
+          </div>
+        </div>
+
+      </div>
+
+      <section class="expire-box">
+        <small>กำหนดสิ้นสุดการใช้งาน</small>
+        <div class="expire-date">30 / 07 / 2569</div>
+      </section>
+
+      <section class="contact-box">
+
+        <h2>เปิดใช้งาน ROM</h2>
+
+        <div class="contact-name">
+          Developer Team AFP289
+        </div>
+
+        <p class="contact-text">
+          ซื้อ Activation Key และเปิดใช้งานผ่านระบบออนไลน์<br>
+          หรือติดต่อผู้พัฒนาผ่าน Facebook
+        </p>
+
+        <div class="button-group">
+
+          <a
+            class="button activate-button"
+            href="http://pawarit.duckdns.org:3660/api/user/pitoon/atvice.html"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            🔑 Activate Online
+          </a>
+
+          <a
+            class="button facebook-button"
+            href="https://www.facebook.com/wachirawit.khueako"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            ติดต่อผ่าน Facebook
+          </a>
+
+        </div>
+
+      </section>
+
+      <footer class="footer">
+        โปรดซื้อ Activation Key จากผู้พัฒนา
+        หรือทีมงานที่ได้รับอนุญาตเท่านั้น<br>
+        AFP289 ROM Testing System
+      </footer>
+
+    </div>
+
+  </main>
+
+</body>
+</html>
